@@ -5,6 +5,7 @@
 import requests
 from bs4 import BeautifulSoup
 
+
 class xici(object):
     def __init__(self,headers,url):
         self.__headers = headers
@@ -18,8 +19,7 @@ class xici(object):
         }
         headers = self.__headers.copy()
         headers.update(header)
-        proxies = {"http":"http://122.193.14.102:80"}
-        response = requests.get(self.__url, headers=headers,timeout=5,proxies=proxies)
+        response = requests.get(self.__url, headers=headers,timeout=5)
         soup = BeautifulSoup(response.text, 'lxml')
         morepage = soup.find('a',class_='next_page').string
         homepagelist = []
@@ -61,8 +61,6 @@ def xicidomestic():
         else:
             num = 0
             return xici(headers, url).getip()[0]
-
-
 
 
 def xiciGeneralagent():
